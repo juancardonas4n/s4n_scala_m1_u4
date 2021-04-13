@@ -8,14 +8,14 @@ chmod +x coursier
 
 ALMOND_VERSION=0.10.9
 
-# # Install almond for Scala 2.13
-# ./coursier launch "almond:$ALMOND_VERSION" --scala 2.13.3 -- \
-#   --install \
-#   --id scala213 \
-#   --display-name "Scala (2.13)" \
-#   --env "JAVA_OPTS=-XX:MaxRAMPercentage=80.0" \
-#   --variable-inspector \
-#   </dev/null 2>&1 | grep -v '^Download'
+# Install almond for Scala 2.13
+./coursier launch "almond:$ALMOND_VERSION" --scala 2.13.3 -- \
+  --install \
+  --id scala213 \
+  --display-name "Scala (2.13)" \
+  --env "JAVA_OPTS=-XX:MaxRAMPercentage=80.0" \
+  --variable-inspector \
+  </dev/null 2>&1 | grep -v '^Download'
 
 # # Install almond for Scala 2.12
 # ./coursier launch "almond:$ALMOND_VERSION" --scala 2.12.12 -- \
@@ -28,7 +28,7 @@ ALMOND_VERSION=0.10.9
 
 # Install almond 0.6.0 for Scala 2.11
 # TODO remove once TransmogrifAI and vegas are updated for Scala 2.12
-SCALA_VERSION=2.11.12
+SCALA_VERSION=2.13
 ALMOND_VERSION=0.10.9
 ./coursier bootstrap \
   -r jitpack \
@@ -41,7 +41,7 @@ ALMOND_VERSION=0.10.9
   --command "java -XX:MaxRAMPercentage=80.0 -jar almond-scala-2.11 --id scala211 --display-name 'Scala (2.11)'" \
   --copy-launcher \
   --metabrowse
-rm -f almond-scala-2.11
+rm -f almond-scala-$SCALA-VERSION
 
 # Install required Jupyter/JupyterLab extensions
 jupyter labextension install --minimize=False \
